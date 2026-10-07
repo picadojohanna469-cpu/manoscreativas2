@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joha - Papelería Creativa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --pink-bg: #fff0f5; 
+      --pink-header: #fce4ec; 
+      --pink-primary: #e91e63; 
+      --pink-accent: #ff4081; 
+      --purple-title: #8e24aa; 
+      --blue-soft: #e3f2fd; 
+      --text-dark: #4a4a4a; 
+    } 
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Quicksand', sans-serif; 
+    } 
+    html { 
+      scroll-behavior: smooth; 
+    } 
+    body { 
+      background-color: var(--pink-bg); 
+      color: var(--text-dark); 
+      padding-bottom: 40px; 
+    } 
+    .container { 
+      max-width: 1050px; 
+      margin: 0 auto; 
+      background: white; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+      border-radius: 20px; 
+      overflow: hidden; 
+    } 
+    /* --- NAVBAR --- */ 
+    nav { 
+      background-color: #f8bbd0; 
+      padding: 12px 20px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 12px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+    } 
+    nav a { 
+      color: #880e4f; 
+      text-decoration: none; 
+      font-weight: 700; 
+      font-size: 0.9rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      background: rgba(255, 255, 255, 0.6); 
+      padding: 8px 16px; 
+      border-radius: 20px; 
+      transition: all 0.3s; 
+    } 
+    nav a:hover { 
+      background: white; 
+      transform: translateY(-2px); 
+    } 
+    /* --- HERO HEADER --- */ 
+    header { 
+      background: linear-gradient(180deg, #fce4ec 0%, #fff 100%); 
+      padding: 40px 20px; 
+      text-align: center; 
+    } 
+    .brand-title { 
+      font-family: 'Pacifico', cursive; 
+      font-size: 4rem; 
+      color: #d81b60; 
+      line-height: 1.1; 
+      margin-bottom: 5px; 
+      text-shadow: 2px 2px 0px #f8bbd0; 
+    } 
+    .brand-subtitle { 
+      font-family: 'Fredoka', sans-serif; 
+      font-size: 1.5rem; 
+      color: #8e24aa; 
+      background: #f3e5f5; 
+      display: inline-block; 
+      padding: 4px 20px; 
+      border-radius: 15px; 
+      margin-bottom: 15px; 
+    } 
+    .hero-slogan { 
+      font-size: 1.1rem; 
+      color: #6a1b9a; 
+      font-weight: 600; 
+    } 
+    /* --- SECTION TITLES --- */ 
+    .section-header { 
+      text-align: center; 
+      padding: 30px 20px 10px 20px; 
+    } 
+    .section-header h2 { 
+      font-family: 'Fredoka', sans-serif; 
+      font-size: 2.2rem; 
+      color: #6a1b9a; 
+      letter-spacing: 0.5px; 
+    } 
+    .section-header p { 
+      color: #ec407a; 
+      font-weight: 600; 
+    } 
+    /* --- KITS GRID --- */ 
+    .kits-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+      gap: 20px; 
+      padding: 20px; 
+    } 
+    .kit-card { 
+      border-radius: 16px; 
+      padding: 20px 15px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    } 
+    .kit-1 { background-color: #fce4ec; border: 2px solid #f8bbd0; } 
+    .kit-2 { background-color: #fff8e1; border: 2px solid #ffe082; } 
+    .kit-3 { background-color: #e0f2f1; border: 2px solid #80cbc4; } 
+    .kit-4 { background-color: #f3e5f5; border: 2px solid #ce93d8; } 
+    .kit-card h3 { 
+      font-family: 'Fredoka', sans-serif; 
+      font-size: 1.2rem; 
+      text-align: center; 
+      color: #4a148c; 
+      margin-bottom: 12px; 
+    } 
+    .kit-price { 
+      background-color: #ec407a; 
+      color: white; 
+      font-family: 'Fredoka', sans-serif; 
+      font-size: 1.4rem; 
+      text-align: center; 
+      padding: 6px; 
+      border-radius: 20px; 
+      margin-bottom: 15px; 
+    } 
+    .kit-list { 
+      list-style: none; 
+      font-size: 0.9rem; 
+      line-height: 1.6; 
+    } 
+    .kit-list li::before { 
+      content: "- "; 
+      color: #d81b60; 
+      font-weight: bold; 
+    } 
+    /* --- CATÁLOGO DE PRODUCTOS --- */ 
+    .products-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 20px; 
+      padding: 20px; 
+    } 
+    .product-category { 
+      background: #fafafa; 
+      border-radius: 16px; 
+      padding: 20px; 
+      border: 1px solid #f0f0f0; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+    } 
+    .product-category h3 { 
+      font-family: 'Fredoka', sans-serif; 
+      font-size: 1.25rem; 
+      color: #8e24aa; 
+      margin-bottom: 12px; 
+      border-bottom: 2px solid #f8bbd0; 
+      padding-bottom: 8px; 
+    } 
+    .product-category ul { 
+      list-style: none; 
+      font-size: 0.9rem; 
+      line-height: 1.7; 
+    } 
+    .product-category ul li { 
+      position: relative; 
+      padding-left: 18px; 
+    } 
+    .product-category ul li::before { 
+      content: "•"; 
+      color: #ec407a; 
+      font-weight: bold; 
+      font-size: 1.2rem; 
+      position: absolute; 
+      left: 0; 
+      top: -2px; 
+    } 
+    /* --- GALERÍA --- */ 
+    .gallery-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+      gap: 20px; 
+      padding: 20px; 
+    } 
+    .gallery-card { 
+      background: #ffffff; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+      border: 2px solid #f8bbd0; 
+      transition: transform 0.3s ease; 
+      text-align: center; 
+    } 
+    .gallery-card:hover { 
+      transform: translateY(-5px); 
+    } 
+    .gallery-card img { 
+      width: 100%; 
+      height: 250px; 
+      object-fit: cover; 
+      display: block; 
+    } 
+    .gallery-card p { 
+      padding: 10px; 
+      font-weight: 700; 
+      font-size: 0.95rem; 
+      color: #8e24aa; 
+      background-color: #fff0f5; 
+    } 
+    /* --- CONTRATO --- */ 
+    .terms-section { 
+      background: #fafafa; 
+      margin: 20px; 
+      padding: 25px; 
+      border-radius: 16px; 
+      border: 1px dashed #ce93d8; 
+    } 
+    .terms-section h3 { 
+      font-family: 'Fredoka', sans-serif; 
+      color: #6a1b9a; 
+      font-size: 1.5rem; 
+      margin-bottom: 15px; 
+    } 
+    .terms-list { 
+      list-style: none; 
+    } 
+    .terms-list li { 
+      font-size: 0.9rem; 
+      margin-bottom: 8px; 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 8px; 
+    } 
+    .terms-list i { 
+      color: #8e24aa; 
+      margin-top: 3px; 
+    } 
+    /* --- FOOTER & CONTACTO --- */ 
+    footer { 
+      background-color: #f8bbd0; 
+      padding: 30px 20px; 
+      display: flex; 
+      justify-content: space-around; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+    } 
+    .btn-whatsapp { 
+      background-color: #25d366; 
+      color: white; 
+      text-decoration: none; 
+      padding: 12px 24px; 
+      border-radius: 30px; 
+      font-weight: 700; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); 
+      transition: transform 0.2s; 
+    } 
+    .btn-whatsapp:hover { 
+      transform: scale(1.05); 
+    } 
+    .social-info { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      color: #880e4f; 
+      font-weight: 700; 
+      text-decoration: none; 
+      transition: transform 0.2s; 
+    } 
+    .social-info:hover { 
+      transform: scale(1.05); 
+    } 
+    .slogan-footer { 
+      font-family: 'Pacifico', cursive; 
+      color: #8e24aa; 
+      font-size: 1.2rem; 
+    } 
+  </style>
+</head>
+<body>
+  <div class="container"> 
+    <!-- Menú de Navegación Funcional --> 
+    <nav> 
+      <a href="#inicio"><i class="fa-solid fa-house"></i> Inicio</a> 
+      <a href="#kits"><i class="fa-solid fa-gift"></i> Kits y Paquetes</a> 
+      <a href="#productos"><i class="fa-solid fa-cart-shopping"></i> Productos</a> 
+      <a href="#galeria"><i class="fa-solid fa-images"></i> Galería</a> 
+      <a href="#contrato"><i class="fa-solid fa-file-contract"></i> Contrato</a> 
+      <a href="#contacto"><i class="fa-solid fa-phone"></i> Contacto: 8740-7204</a> 
+    </nav> 
+
+    <!-- Encabezado Principal --> 
+    <header id="inicio"> 
+      <h1 class="brand-title">Joha</h1> 
+      <div class="brand-subtitle">Papelería Creativa</div> 
+      <p class="hero-slogan">Creamos detalles únicos para cumpleaños, eventos y regalos especiales</p> 
+    </header> 
+
+    <!-- Sección Kits Especiales --> 
+    <section id="kits"> 
+      <div class="section-header"> 
+        <h2>Kits y Paquetes Especiales 🦄</h2> 
+        <p>¡Reserva con el 50% de adelanto!</p> 
+      </div> 
+      <div class="kits-grid"> 
+        <!-- Kit Exprés --> 
+        <div class="kit-card kit-1"> 
+          <div> 
+            <h3>🎀 Kit Exprés</h3> 
+            <div class="kit-price">₡15.000</div> 
+            <ul class="kit-list"> 
+              <li>1 Cake topper</li> 
+              <li>1 Banderín corto</li> 
+              <li>10 Cajitas para dulces</li> 
+            </ul> 
+          </div> 
+        </div> 
+        <!-- Kit Cumpleaños Básico --> 
+        <div class="kit-card kit-2"> 
+          <div> 
+            <h3>🎂 Kit Cumpleaños Básico</h3> 
+            <div class="kit-price">₡28.000</div> 
+            <ul class="kit-list"> 
+              <li>1 Cake topper</li> 
+              <li>1 Banderín</li> 
+              <li>1 Nombre/Número 3D</li> 
+              <li>12 Cupcake toppers</li> 
+              <li>12 Cajitas</li> 
+            </ul> 
+          </div> 
+        </div> 
+        <!-- Kit Cumpleaños Completo --> 
+        <div class="kit-card kit-3"> 
+          <div> 
+            <h3>🥳 Kit Cumpleaños Completo</h3> 
+            <div class="kit-price">₡75.000</div> 
+            <ul class="kit-list"> 
+              <li>1 Cake Topper para pastel</li> 
+              <li>10 Cupcake Toppers</li> 
+              <li>5 Centros de mesa</li> 
+              <li>12 Cajitas dulceras</li> 
+              <li>12 Vasitos personalizados</li> 
+              <li>12 Gorritos</li> 
+              <li>1 Banderín de "Feliz Cumpleaños"</li> 
+              <li>12 Envolturas para chocolates o bolsitas de picar</li> 
+              <li>12 Cajitas para palomitas</li> 
+              <li>12 Libritos de colorear temáticos</li> 
+              <li>1 Letra 3D</li> 
+            </ul> 
+          </div> 
+        </div> 
+        <!-- Kit Emprendedor --> 
+        <div class="kit-card kit-4"> 
+          <div> 
+            <h3>💼 Kit para Emprendedor</h3> 
+            <div class="kit-price">₡25.000</div> 
+            <ul class="kit-list"> 
+              <li>100 Stickers con logo</li> 
+              <li>100 Etiquetas para productos</li> 
+              <li>50 Tarjetas de agradecimiento</li> 
+              <li>1 QR para redes</li> 
+            </ul> 
+          </div> 
+        </div> 
+      </div> 
+    </section> 
+
+    <!-- Catálogo Extenso de Productos --> 
+    <section id="productos"> 
+      <div class="section-header"> 
+        <h2>Nuestros Productos</h2> 
+        <p>Descubre todo lo que podemos crear para ti</p> 
+      </div> 
+      <div class="products-grid"> 
+        <!-- Categ 1 --> 
+        <div class="product-category"> 
+          <h3>🎂 1. Cumpleaños y Fiestas</h3> 
+          <ul> 
+            <li>Cajitas para dulces personalizadas</li> 
+            <li>Cajas sorpresa</li> 
+            <li>Piñatas personalizadas</li> 
+            <li>Números 3D para cumpleaños</li> 
+            <li>Letras y nombres 3D</li> 
+            <li>Cake toppers</li> 
+            <li>Cupcake toppers</li> 
+            <li>Banderines</li> 
+            <li>Etiquetas para botellas</li> 
+            <li>Envolturas para chocolates</li> 
+            <li>Bolsitas de dulces</li> 
+            <li>Invitaciones</li> 
+            <li>Centros de mesa</li> 
+            <li>Kits completos de cumpleaños</li> 
+          </ul> 
+        </div> 
+        <!-- Categ 2 --> 
+        <div class="product-category"> 
+          <h3>✨ 2. Productos con Vinil</h3> 
+          <ul> 
+            <li>Nombres personalizados</li> 
+            <li>Vasos y termos</li> 
+            <li>Botellas</li> 
+            <li>Tazas</li> 
+            <li>Frascos</li> 
+            <li>Cajas</li> 
+            <li>Organizadores</li> 
+            <li>Etiquetas</li> 
+            <li>Decoración para fiestas</li> 
+            <li>Rótulos pequeños</li> 
+            <li>Vinil para paredes</li> 
+            <li>Calcomanías decorativas</li> 
+          </ul> 
+        </div> 
+        <!-- Categ 3 --> 
+        <div class="product-category"> 
+          <h3>🦋 3. Stickers</h3> 
+          <ul> 
+            <li>Stickers con nombres</li> 
+            <li>Stickers para útiles escolares</li> 
+            <li>Stickers para botellas</li> 
+            <li>Stickers para negocios</li> 
+            <li>Stickers de cumpleaños</li> 
+            <li>Stickers para regalos</li> 
+            <li>Stickers holográficos</li> 
+            <li>Stickers transparentes</li> 
+            <li>Etiquetas adhesivas para productos</li> 
+            <li>Stickers personalizados con personajes, mascotas o frases</li> 
+          </ul> 
+        </div> 
+        <!-- Categ 4 --> 
+        <div class="product-category"> 
+          <h3>🎁 4. Regalos Personalizados</h3> 
+          <ul> 
+            <li>Cajas para cumpleaños</li> 
+            <li>Cajas para novios</li> 
+            <li>Cajas para mamá/papá</li> 
+            <li>Cajas para graduación</li> 
+            <li>Cajas de agradecimiento</li> 
+            <li>Cajas para profesores</li> 
+            <li>Cajas corporativas</li> 
+            <li>Tarjetas personalizadas</li> 
+            <li>Sobres decorados</li> 
+            <li>Tags para regalos</li> 
+          </ul> 
+        </div> 
+        <!-- Categ 5 --> 
+        <div class="product-category"> 
+          <h3>💼 5. Para Emprendimientos</h3> 
+          <ul> 
+            <li>Etiquetas para productos</li> 
+            <li>Stickers con logo</li> 
+            <li>Tarjetas de presentación</li> 
+            <li>Tarjetas de agradecimiento</li> 
+            <li>Empaques personalizados</li> 
+            <li>Sellos / stickers de "Gracias por tu compra"</li> 
+            <li>Etiquetas de precios</li> 
+            <li>QR para WhatsApp o redes sociales</li> 
+            <li>Empaques para repostería</li> 
+            <li>Packaging para cosméticos, uñas, ropa, accesorios, etc.</li> 
+          </ul> 
+        </div> 
+        <!-- Categ 6 --> 
+        <div class="product-category"> 
+          <h3>🎓 6. Eventos</h3> 
+          <ul> 
+            <li>Invitaciones</li> 
+            <li>Recuerdos</li> 
+            <li>Números de mesa</li> 
+            <li>Nombres para mesas</li> 
+            <li>Menús</li> 
+            <li>Etiquetas</li> 
+            <li>Centros de mesa</li> 
+            <li>Letras decorativas</li> 
+            <li>Kits para bodas, baby showers, bautizos y graduaciones</li> 
+          </ul> 
+        </div> 
+      </div> 
+    </section> 
+
+    <!-- Sección Galería --> 
+    <section id="galeria"> 
+      <div class="section-header"> 
+        <h2>Galería de Trabajos</h2> 
+        <p>Fotos de nuestros productos terminados</p> 
+      </div> 
+      <div class="gallery-grid"> 
+        <div class="gallery-card"> 
+          <img src="1000431961.jpg" alt="Piñata de Ositos Cariñositos"> 
+          <p>Piñata de Ositos Cariñositos</p
